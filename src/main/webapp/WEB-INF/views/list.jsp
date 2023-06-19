@@ -20,9 +20,7 @@
 			<th>조회수</th>
 		</tr>
 		<c:forEach items="${list}" var="boardDto">
-		<tr>
-			<td>안녕</td>
-		</tr>
+		
 		<tr>
 			<td>${boardDto.bid }</td>
 			<td>

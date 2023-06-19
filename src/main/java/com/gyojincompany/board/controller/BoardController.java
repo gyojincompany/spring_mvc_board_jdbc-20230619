@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +18,21 @@ import com.gyojincompany.board.command.BModifyCommand;
 import com.gyojincompany.board.command.BWriteCommand;
 import com.gyojincompany.board.dao.BoardDao;
 import com.gyojincompany.board.dto.BoardDto;
+import com.gyojincompany.board.util.Constant;
 
 @Controller
 public class BoardController {
 	
 	BCommand command = null;
 	
+	private JdbcTemplate template;
+	
+	@Autowired
+	public void setTemplate(JdbcTemplate template) {
+		this.template = template;
+		Constant.template = this.template;
+	}
+
 	@RequestMapping(value = "/write_form")
 	public String write_form() {
 		return "write_form";
